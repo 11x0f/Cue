@@ -1,0 +1,114 @@
+
+ONE LINE DESCRIPTION:
+    A multi-agent AI system that autonomously discovers, verifies, deduplicates, analyzes, and selectively delivers high-signal funding intelligence from the Indian Startup Ecosystem
+
+
+GOALS:
+    My system must: 
+        1. Decide what matters(not just collect)
+        2. Reason over conflicting data
+        3. Avoid redundancy
+        4. Add insight, not repetition
+        5. Act autonomously(skip/ delay/ escalate)
+
+HIGH LEVEL ARCHITECTURE
+    1. Scheduler 
+    
+    2. Discovery agent
+    
+    3. Source Credibility agent
+
+    4. Deduplication & Verification agent
+
+    5. Information Extraction agent
+
+    6. Insight & Trend agent
+
+    7. Delivery Decision agent
+
+    8. Email/Dashboard
+
+
+1. DISCOVERY AGENT 
+    a. Responsiblity: Discover new funding events only
+    b. Requirements
+        i.   Input: curated + expandable source list
+        ii.  Detect: New Articles, Social posts announcing funding, press release
+        iii. Output: raw funding candidates
+    c. Intelligence Required: 
+        i. Skip reposts
+        ii. Ignore opinion pieces
+        iii. detect stealth launches
+
+2. SOURCE CREDIBILITY AGENT 
+    a. Responsiblity: Judge trustworthiness
+    b. Requirements: 
+        i. maintain Credibility scores per source
+        ii. Factors: Historical accuracy, primary v secondary reporting, consistency across sources
+        iii. Ouput: 
+                {
+                    "source": "XYZ", 
+                    "credibility_score": 0.82,
+                    "reason": "Primary interview with founder"
+                }
+
+3. DEDUPLICATION & VERIFICATION AGENT 
+    Responsiblity:
+        a. Merge duplicate news
+        b. Resolve conflicting amounts/ investors
+
+    Requirements
+        a. Fuzzy matching( startup names vary)
+        b. Detect: 
+            i. Same round reported differently
+            ii. Multiple articles on same funding
+
+    Intelligence Required
+        a. Choose most likely correct version
+        b. Flag inconsistencies
+
+    Example: Amout varies between $40-50 Cr. Using $45Cr(median)
+
+4. INFORMATION EXTRACTION AGENT
+    Responsiblity: Extract structured data reliably
+
+    Requried Fields: 
+        a. Startup name
+        b. 2-line business DESCRIPTION
+        c. Investors
+        d. amounts
+        e. Round type
+        f. duplicate
+        g. Founder names
+        h. Founder public profiles.
+
+    Use: 
+        a. Company Website
+        b. Crunchbase-like cources
+        c. Google knowledge panels
+        d. Prior cached Data
+
+5. INSIGHTS & TREND AGENT 
+    Responsiblity
+        a. Weekly/monthly patterns
+        b. Investor behaviour
+        c. Sector momentum
+
+    Examples:
+        a. "AI infra funding 32% increace WoW"
+        b. "Seed rounds dominate Chennai"
+        c. Accel Focusing on healthcare this quarter
+
+6. DELIVERY DECISION AGENT
+    Responsiblity: decide whether to send an Email
+
+    Rule: 
+        a. No email if: 
+            i. <2 high-confidence funding
+            ii. all news is recycled
+
+        b. Priority alerts if: 
+            i. Mega round
+            ii. New Unicorn
+            iii. Rare sector activity
+
